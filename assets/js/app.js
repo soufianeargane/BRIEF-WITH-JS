@@ -17,9 +17,9 @@
  var critical = document.getElementById("critical");
  var myPriority;
 
- var myToDo = document.getElementById("to do");
- var myDoing = document.getElementById("doing");
- var myDone = document.getElementById("done");
+ var myToDo = document.getElementById("To Do");
+ var myDoing = document.getElementById("In Progress");
+ var myDone = document.getElementById("Done");
  var myStatus
  var myDate
  var myDescription
@@ -41,9 +41,9 @@ function createTask() {
     if(low.selected){myPriority = document.getElementById("low").id}
     if(critical.selected){myPriority = document.getElementById("critical").id}
 
-    if(myToDo.selected){myStatus = document.getElementById("to do").id}
-    if(myDoing.selected){myStatus = document.getElementById("doing").id}
-    if(myDone.selected){myStatus = document.getElementById("done").id}
+    if(myToDo.selected){myStatus = document.getElementById("To Do").id}
+    if(myDoing.selected){myStatus = document.getElementById("In Progress").id}
+    if(myDone.selected){myStatus = document.getElementById("Done").id}
 
     myDate=document.getElementById("endDate").value
     myDescription = document.getElementById("formTextarea").value
