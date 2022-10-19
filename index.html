@@ -115,17 +115,17 @@
 				  <label class="form-label mt-1">Priority</label>
 				  <select class="form-select form-select-lg mb-3" id="formSelectPriority" aria-label=".form-select-lg example">
 					  <option disabled selected>Please select</option>
-					  <option id="high" value="1">high</option>
-					  <option id="medium" value="2">medium</option>
-					  <option id="low" value="3">low</option>
-					  <option id="critical" value="3">critical</option>
+					  <option  value="High">high</option>
+					  <option  value="Medium">medium</option>
+					  <option  value="Low">low</option>
+					  <option  value="Critical">critical</option>
 				  </select>
 				  <label  class="form-label mt-1">Status</label>
 				  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="formSelectStatus">
 					  <option disabled selected>Please select</option>
-					  <option id="To Do" value="1">to do</option>
-					  <option id="In Progress" value="2">doing</option>
-					  <option id="Done" value="3">done</option>
+					  <option  value="To Do">To Do</option>
+					  <option  value="In Progress">In Progress</option>
+					  <option  value="Done">Done</option>
 				  </select>
 				  <label  class="form-label mt-1">Date</label>
 				  <div>
@@ -139,7 +139,7 @@
 				  </div>
 				  <div class="modal-footer">
 					  <button type="button"  class="btn btn-light text-dark" data-bs-dismiss="modal">Close</button>
-					  <!-- <button type="button" id="update"  class="btn btn-success" data-bs-dismiss="modal">Update</button>
+					<!-- <button type="button" id="update"  class="btn btn-success" data-bs-dismiss="modal">Update</button>
 					  <button type="button" id="delete"  class="btn btn btn-danger" data-bs-dismiss="modal">Delete</button> -->
 					  <button type="button" id="submit" class="btn btn-primary submit" data-bs-dismiss="modal" onclick="createTask()" >submit</button>
 				  </div>
@@ -148,7 +148,9 @@
 	  </form>
 	  </div>
 	</div>
-	
+	<div  class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modal-task-edit">
+		
+	</div>
 	<!-- ================== BEGIN core-js ================== -->
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
