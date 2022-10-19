@@ -6,26 +6,35 @@
 
 var index;
 var myTitle ;
-var myFeature = document.getElementById("feature");
-var myBug = document.getElementById("bug");
+var myFeature = document.getElementById("Feature");
+var myBug = document.getElementById("Bug");
 var myType;
 var myPriority;
 var myStatus;
+var priority = document.getElementById("formSelectPriority");
+var arr_Priority = Array.from(priority)
+var statuss =  document.getElementById("formSelectStatus");
+var arr_Status = Array.from(statuss);
+var myToDo = document.getElementById("To Do");
+var myDoing = document.getElementById("In Progress");
+var myDone = document.getElementById("Done");
+var myDate
+var myDescription
 
 
- var priority = document.getElementById("formSelectPriority");
- var arr_Priority = Array.from(priority)
-
-  var statuss =  document.getElementById("formSelectStatus");
-  var arr_Status = Array.from(statuss);
-
- var myToDo = document.getElementById("To Do");
- var myDoing = document.getElementById("In Progress");
- var myDone = document.getElementById("Done");
-
- var myDate
- var myDescription
-
+/*          declaration for edit modal            */
+var myTitle_edit ;
+var myFeature_edit = document.getElementById("feature-edit");
+var myBug_edit = document.getElementById("bug-edit");
+var myType_edit;
+var myPriority_edit;
+var myStatus_edit;
+var priority_edit = document.getElementById("formSelectPriority-edit");
+var arr_Priority_edit = Array.from(priority_edit)
+var statuss_edit =  document.getElementById("formSelectStatus-edit");
+var arr_Status_edit = Array.from(statuss_edit);
+var myDate_edit
+var myDescription_edit
 
 function createTask() {
     // initialiser task form
@@ -33,15 +42,14 @@ function createTask() {
     // Ouvrir modal form
     
     myTitle = document.getElementById("formTitle").value;
-    if(myFeature.checked) {myType= document.getElementById("feature").id}
-    if(myBug.checked){myType= document.getElementById("bug").id;}
+    if(myFeature.checked) {myType= document.getElementById("Feature").id}
+    if(myBug.checked){myType= document.getElementById("Bug").id;}
 
     arr_Priority.forEach(function(option){
         if(option.selected){
             myPriority = option.value
         }
         })
-        // console.log(myPriority);
     
     arr_Status.forEach(function(option){
         if(option.selected){
@@ -150,27 +158,27 @@ function editTask(index){
               <input type="text" class="form-control" id="formTitle-edit">
               <label  class="form-label mt-10px">Type</label>
               <div class="form-check ms-3">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="feature-edit" >
+                  <input class="form-check-input" type="radio" value="Feature" name="flexRadioDefault" id="feature-edit" >
                   <label class="form-check-label" >Feature</label>
               </div>
               <div class="form-check ms-3">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="bug-edit">
+                  <input class="form-check-input" type="radio" value="Bug" name="flexRadioDefault" id="bug-edit">
                   <label class="form-check-label" >Bug</label>
               </div>
               <label class="form-label mt-1">Priority</label>
               <select class="form-select form-select-lg mb-3" id="formSelectPriority-edit" aria-label=".form-select-lg example">
                   <option  disabled selected>Please select</option>
-                  <option id="high-edit" value="1">High</option>
-                  <option id="medium" value="2">medium</option>
-                  <option id="low" value="3">low</option>
-                  <option id="critical" value="3">critical</option>
+                  <option value="High">High</option>
+                  <option value="Medium">medium</option>
+                  <option value="Low">low</option>
+                  <option value="Critical">critical</option>
               </select>
               <label  class="form-label mt-1">Status</label>
               <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="formSelectStatus-edit">
                   <option disabled selected>Please select</option>
-                  <option id="To Do" value="1">to do</option>
-                  <option id="In Progress" value="2">doing</option>
-                  <option id="Done" value="3">done</option>
+                  <option value="To Do">To Do</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Done">Done</option>
               </select>
               <label  class="form-label mt-1">Date</label>
               <div>
@@ -184,8 +192,8 @@ function editTask(index){
               </div>
               <div class="modal-footer">
                 <button type="button"  class="btn btn-light text-dark" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="update" onclick="getIndex(index)" class="btn btn-success" data-bs-dismiss="modal">Update</button>
-                <button type="button" id="delete"  class="btn btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                <button type="button" id="update" onclick="updateTask(${index})" class="btn btn-success" data-bs-dismiss="modal">Update</button>
+                <button type="button" id="delete" onclick="deleteTask(${index})" class="btn btn btn-danger" data-bs-dismiss="modal">Delete</button>
                 </div>
             </div>
         </div>
@@ -203,36 +211,46 @@ function editTask(index){
 }
 
 
-var myTitle_edit ;
-// var myFeature_edit = document.getElementById("feature-edit");
-// var myBug_edit = document.getElementById("bug-edit");
-// var myType_edit;
-// var myPriority_edit;
-// var myStatus_edit;
 
-// var priority_edit = document.getElementById("formSelectPriority-edit");
-// var arr_Priority_edit = Array.from(priority_edit)
-
-// var statuss_edit =  document.getElementById("formSelectStatus-edit");
-// var arr_Status_edit = Array.from(statuss_edit);
 
 
 function updateTask(index) {
     myTitle_edit = document.getElementById("formTitle-edit").value;
     tasks[index].title = myTitle_edit;
-    console.log(tasks[index].type);
+    // console.log(tasks[index].title);
+    // console.log(`kk ${myFeature.id}`)
+    if(myFeature_edit.checked){myType_edit =document.getElementById("Feature").id};
+    if(myBug_edit.checked){myType_edit =document.getElementById("Bug").id};
+    tasks[index].type = myType_edit;
+    // console.log(myType_edit)
+    
+    arr_Priority_edit.forEach(function(option){
+        if(option.selected){
+            myPriority_edit = option.value;
+        }
+        })
+    // console.log(myPriority_edit)
+    arr_Status_edit.forEach(function(option){
+        if(option.selected){
+            myStatus_edit = option.value;
+        }
+    })
+    // console.log(myStatus_edit)
 
-    readTask();
+    myDate_edit = document.getElementById("endDate-edit").value;
+    tasks[index].date = myDate_edit;
+    console.log(tasks[index].date);
+
+    myDescription_edit = document.getElementById("formTextarea-edit").value;
+    tasks[index].description = myDescription_edit;
+    console.log(tasks[index].description);
+    readTask()
 }
 
-function deleteTask() {
-    // Get index of task in the array
-
-    // Remove task from array by index splice function
-
-    // close modal form
-
-    // refresh tasks
+function deleteTask(index) {
+tasks.splice(index, 1);
+console.log(tasks);
+readTask()
 }
 
 function initTaskForm() {
@@ -240,11 +258,6 @@ function initTaskForm() {
 
     // Hide all action buttons
 }
-
-function getIndex(index) {
-    updateTask(index);
-}
-
 
 function saveTask() {
     // Recuperer task attributes a partir les champs input
