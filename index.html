@@ -35,7 +35,7 @@
 					<!-- END page-header -->
 				</div>
 				<div class="">
-					<button type="button" data-bs-toggle="modal" data-bs-target="#modal-task" class="bg-teal-400 border-0 px-4 py-2 rounded-pill text-white"><i class="bi bi-plus-lg me-3 text-dark"></i>Add Task</a>
+					<button type="button" id="add-task" data-bs-toggle="modal" data-bs-target="#modal-task" class="bg-teal-400 border-0 px-4 py-2 rounded-pill text-white" ><i class="bi bi-plus-lg me-3 text-dark"></i>Add Task</a> </button>
 				</div>
 			</div>
 			<div class="row justify-content-center m-0 w-100">
@@ -72,6 +72,7 @@
 				</div>
 			</div>
 		</div>
+		<div id="edit"></div>
 		<!-- END #content -->
 
 		<!-- Button trigger modal -->
@@ -138,7 +139,9 @@
 				  </div>
 				  <div class="modal-footer">
 					  <button type="button"  class="btn btn-light text-dark" data-bs-dismiss="modal">Close</button>
-					  <button type="button" id="save" class="btn btn-primary submit" onclick="createTask()" >submit</button>
+					  <!-- <button type="button" id="update"  class="btn btn-success" data-bs-dismiss="modal">Update</button>
+					  <button type="button" id="delete"  class="btn btn btn-danger" data-bs-dismiss="modal">Delete</button> -->
+					  <button type="button" id="submit" class="btn btn-primary submit" data-bs-dismiss="modal" onclick="createTask()" >submit</button>
 				  </div>
 			  </div>
 		  </div>

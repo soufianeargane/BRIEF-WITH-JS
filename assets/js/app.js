@@ -65,13 +65,14 @@ myDos = document.getElementById("to-do-tasks");
 myDoings = document.getElementById("in-progress-tasks");
 myDones = document.getElementById("done-tasks");
 
+var index;
 function readTask(){
     myDos.innerHTML= '';
     myDoings.innerHTML='';
     myDones.innerHTML='';
     for(let i = 0; i < tasks.length; i++){
         if( tasks[i].status === "To Do" ){
-            myDos.innerHTML +=`<button type="button" class="w-100 border-0 mb-1 bg-white d-flex" >
+            myDos.innerHTML +=`<button type="button" data-bs-toggle="modal" data-bs-target="#modal-task-edit" class="w-100 border-0 mb-1 bg-white d-flex" onclick="editTask(${i})"  >
          					<div class="p-2">
          						<i class="bi bi-question-circle text-green-500 fs-4"></i> 
          					</div>
@@ -89,7 +90,7 @@ function readTask(){
          				</button> `
         }
         if(tasks[i].status === "In Progress"){
-            myDoings.innerHTML +=`<button type="button"  class="w-100 border-0 mb-1 bg-white d-flex" >
+            myDoings.innerHTML +=`<button type="button" data-bs-toggle="modal" data-bs-target="#modal-task-edit" class="w-100 border-0 mb-1 bg-white d-flex" onclick="editTask()" >
                             <div class="p-2">
                                 <i class="bi bi-question-circle text-green-500 fs-4"></i> 
                             </div>
@@ -107,7 +108,7 @@ function readTask(){
                         </button> `
         }
         if(tasks[i].status === "Done" ){
-            myDones.innerHTML +=`<button type="button" class="w-100 border-0 mb-1 bg-white d-flex">
+            myDones.innerHTML +=`<button  type="button" data-bs-toggle="modal" data-bs-target="#modal-task-edit" class="w-100 border-0 mb-1 bg-white d-flex" onclick="editTask()" >
                                 <div class="p-2">
                                     <i class="bi bi-question-circle text-green-500 fs-4"></i> 
                                 </div>
@@ -125,7 +126,6 @@ function readTask(){
                             </button> `
                             }
     }
-
 }
 
 function saveTask() {
@@ -140,17 +140,72 @@ function saveTask() {
 }
 
 function editTask(index) {
+    // console.log(index);
     // Initialisez task form
-
     // Affichez updates
-
     // Delete Button
-
     // Définir l’index en entrée cachée pour l’utiliser en Update et Delete
-
     // Definir FORM INPUTS
-
     // Ouvrir Modal form
+
+    let edit;
+    edit = document.getElementById("edit");
+    edit.innerHTML = `<div class="modal fade" id="modal-task-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal content goes here -->
+    <div class="modal-dialog">
+        <form  class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div   class="mb-3">
+              <label  class="form-label">Title</label>
+              <input type="text" class="form-control" id="formTitle">
+              <label  class="form-label mt-10px">Type</label>
+              <div class="form-check ms-3">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="feature" >
+                  <label class="form-check-label" >Feature</label>
+              </div>
+              <div class="form-check ms-3">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="bug">
+                  <label class="form-check-label" >Bug</label>
+              </div>
+              <label class="form-label mt-1">Priority</label>
+              <select class="form-select form-select-lg mb-3" id="formSelectPriority" aria-label=".form-select-lg example">
+                  <option disabled selected>Please select</option>
+                  <option id="high" value="1">high</option>
+                  <option id="medium" value="2">medium</option>
+                  <option id="low" value="3">low</option>
+                  <option id="critical" value="3">critical</option>
+              </select>
+              <label  class="form-label mt-1">Status</label>
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="formSelectStatus">
+                  <option disabled selected>Please select</option>
+                  <option id="To Do" value="1">to do</option>
+                  <option id="In Progress" value="2">doing</option>
+                  <option id="Done" value="3">done</option>
+              </select>
+              <label  class="form-label mt-1">Date</label>
+              <div>
+                  <input type="date" id="endDate" name="trip-start"
+                  value="yyyy-MM-dd" class="form-control mb-3"
+                  min="2021-01-01" max="2023-12-31">
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">Description</label>
+                  <textarea class="form-control" id="formTextarea" rows="3"></textarea>
+              </div>
+              <div class="modal-footer">
+                  <button type="button"  class="btn btn-light text-dark" data-bs-dismiss="modal">Close</button>
+                  <button type="button" id="update"  class="btn btn-success" data-bs-dismiss="modal">Update</button>
+                  <button type="button" id="delete"  class="btn btn btn-danger" data-bs-dismiss="modal">Delete</button> 
+              </div>
+          </div>
+      </div>
+  </form>
+  </div>
+</div>`
 }
 
 function updateTask() {
@@ -187,3 +242,8 @@ function reloadTasks() {
 
     // Set Task count
 }
+
+
+
+
+    
