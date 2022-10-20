@@ -158,20 +158,20 @@ function editTask(index){
               <input type="text" class="form-control" id="formTitle-edit">
               <label  class="form-label mt-10px">Type</label>
               <div class="form-check ms-3">
-                  <input class="form-check-input" type="radio" value="Feature" name="flexRadioDefault" id="feature-edit" >
+                  <input class="form-check-input" type="radio" value="Feature" name="radio" id="feature-edit" >
                   <label class="form-check-label" >Feature</label>
               </div>
               <div class="form-check ms-3">
-                  <input class="form-check-input" type="radio" value="Bug" name="flexRadioDefault" id="bug-edit">
+                  <input class="form-check-input" type="radio" value="Bug" name="radio" id="bug-edit">
                   <label class="form-check-label" >Bug</label>
               </div>
               <label class="form-label mt-1">Priority</label>
               <select class="form-select form-select-lg mb-3" id="formSelectPriority-edit" aria-label=".form-select-lg example">
                   <option  disabled selected>Please select</option>
                   <option value="High">High</option>
-                  <option value="Medium">medium</option>
-                  <option value="Low">low</option>
-                  <option value="Critical">critical</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                  <option value="Critical">Critical</option>
               </select>
               <label  class="form-label mt-1">Status</label>
               <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="formSelectStatus-edit">
@@ -212,38 +212,33 @@ function editTask(index){
 
 
 
-
+var soso;
 
 function updateTask(index) {
     myTitle_edit = document.getElementById("formTitle-edit").value;
     tasks[index].title = myTitle_edit;
-    // console.log(tasks[index].title);
-    // console.log(`kk ${myFeature.id}`)
-    if(myFeature_edit.checked){myType_edit =document.getElementById("Feature").id};
-    if(myBug_edit.checked){myType_edit =document.getElementById("Bug").id};
-    tasks[index].type = myType_edit;
-    // console.log(myType_edit)
     
-    arr_Priority_edit.forEach(function(option){
-        if(option.selected){
-            myPriority_edit = option.value;
-        }
-        })
-    // console.log(myPriority_edit)
-    arr_Status_edit.forEach(function(option){
-        if(option.selected){
-            myStatus_edit = option.value;
-        }
-    })
-    // console.log(myStatus_edit)
+    soso = document.querySelector('input[name="radio"]:checked').value
+    console.log(soso);
+    tasks[index].type = soso;
+
+    let zz;
+    zz = tasks[index].priority = document.getElementById("formSelectPriority-edit").value;
+    console.log(zz)
+
+    let dd;
+    dd = tasks[index].status = document.getElementById("formSelectStatus-edit").value;
+    console.log(dd);
+
+
 
     myDate_edit = document.getElementById("endDate-edit").value;
     tasks[index].date = myDate_edit;
-    console.log(tasks[index].date);
+    // console.log(tasks[index].date);
 
     myDescription_edit = document.getElementById("formTextarea-edit").value;
     tasks[index].description = myDescription_edit;
-    console.log(tasks[index].description);
+    // console.log(tasks[index].description);
     readTask()
 }
 
@@ -270,5 +265,3 @@ function saveTask() {
     
 }
 
-
-    
