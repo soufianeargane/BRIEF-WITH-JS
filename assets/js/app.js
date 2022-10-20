@@ -69,6 +69,7 @@ function createTask() {
         description  : myDescription,
     })
     readTask()
+    document.getElementById("form").reset() 
 }
 
 var myDos, myDoings, myDones ;
