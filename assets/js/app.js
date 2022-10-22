@@ -53,14 +53,21 @@ function createTask() {
 
 var index;
 
+
 function readTask(){
     document.getElementById("to-do-tasks").innerHTML= '';
     document.getElementById("in-progress-tasks").innerHTML='';
     document.getElementById("done-tasks").innerHTML='';
+
+    let to_do_count       = 0;
+    let in_progress_count = 0;
+    let done_count        = 0;
     
     for(let i = 0; i < tasks.length; i++){
         index = i;
         if( tasks[i].status === "To Do"){
+            to_do_count++;
+            document.getElementById("to-do-tasks-count").innerHTML = to_do_count;
             document.getElementById("to-do-tasks").innerHTML +=
             `<button id="edit-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-task-edit" class="w-100 border-0 mb-1 bg-white d-flex" onclick="editTask(${index})" >
                 <div class="p-2">
@@ -80,6 +87,8 @@ function readTask(){
             </button> `
         }
         if(tasks[i].status === "In Progress"){
+            in_progress_count++;
+            document.getElementById("in-progress-tasks-count").innerHTML = in_progress_count;
             document.getElementById("in-progress-tasks").innerHTML +=
             `<button id="edit-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-task-edit" class="w-100 border-0 mb-1 bg-white d-flex" onclick="editTask(${index})">
                 <div class="p-2">
@@ -99,6 +108,8 @@ function readTask(){
             </button> `
         }
         if(tasks[i].status === "Done" ){
+            done_count++;
+            document.getElementById("done-tasks-count").innerHTML = done_count;
             document.getElementById("done-tasks").innerHTML +=
             `<button id="edit-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal-task-edit" class="w-100 border-0 mb-1 bg-white d-flex" onclick="editTask(${index})">
                 <div class="p-2">
